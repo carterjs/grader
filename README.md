@@ -1,10 +1,8 @@
 Grader
 ======
-<<<<<<< HEAD
 A sleek and intuitive grading tool for teachers
 =======
 A sleek and simple grading tool for teachers.
->>>>>>> FETCH_HEAD
 
 Installation
 ============
