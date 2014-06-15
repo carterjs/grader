@@ -51,23 +51,8 @@ $(function() {
 		var bonus = $('#bonus').val();
 		incorrect -= bonus;
 		var correct = questions - incorrect;
-		var percent = correct / questions * 100;
+		var percent = per(incorrect, questions);
 		var percentr = Math.round(percent);
-		function lg(p) {
-			if(p >= 90) {
-				return "A";
-			} else if(p < 90 && p >= 80) {
-				return "B";
-			} else if(p < 80 && p >=70) {
-				return "C";
-			} else if(p < 70 && p >=60) {
-				return "D";
-			} else if(p < 60) {
-				return "F";
-			} else {
-				return "ERROR";
-			}
-		}
 		var lettergrade = lg(percent);
 		var lettergrader = lg(percentr);
 		if(questions.length > 0) {
@@ -86,13 +71,41 @@ $(function() {
 			} else {
 				id = 1;
 			}
-			function li(s) {
-				return "<tr><td>" + id + "</td><td>" + s[0] + "</td><td>" + s[1] + "</td></tr>";
-			}
 			saved[id] = [percent, lettergrade];
-			$('#app').append(li(saved[id]));
+			$('#app').append(cd(saved[id]));
 			avg += percent;
 			$('#avg').text(avg / id + "% (" + lg(avg / id) + ")");
+			ch(questions);
 		}
 	});
+	function lg(p) {
+		if(p >= 90) {
+			return "A";
+		} else if(p < 90 && p >= 80) {
+			return "B";
+		} else if(p < 80 && p >=70) {
+			return "C";
+		} else if(p < 70 && p >=60) {
+			return "D";
+		} else if(p < 60) {
+			return "F";
+		} else {
+			return "ERROR";
+		}
+	}
+	function cd(s) {
+		return "<tr><td>" + id + "</td><td>" + s[0] + "</td><td>" + s[1] + "</td></tr>";
+	}
+	function ch(q) {
+		$('#app2').html('');
+		var i = 0;
+		while(i<=q) {
+			$('#app2').append("<tr><td>" + i +  "</td><td>" + per(i, q) + "</td><td>" + Math.round(per(i, q)) + "</td><td>" + lg(per(i, q)) + "</td><td>" + lg(Math.round(per(i, q))) + "</td></tr>");
+			i++;
+		}
+	}
+	function per(inc, ques) {
+		var cor = ques - inc;
+		return cor / ques * 100;
+	}
 });
