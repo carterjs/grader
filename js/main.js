@@ -58,10 +58,8 @@ $(function() {
 			$('.tab-content').animate({opacity: 1});
 			$('.correct').text(correct);
 			$('.questions').text(questions);
-			$('#percent').text(percent);
-			$('#percent-r').text(percentr);
-			$('#letter-grade').text(lettergrade);
-			$('#letter-grade-r').text(lettergrader);
+			$('#percent').html(percentr).attr("title", percent + "%");
+			$('#letter-grade').text(lettergrader).attr("title", lettergrade);
 			if(bonus > 0) {
 				$('.bonus').html(", and a <strong>bonus of " + bonus + "</strong>");
 			}
@@ -70,12 +68,12 @@ $(function() {
 			} else {
 				id = 1;
 			}
-			saved[id] = [percent, lettergrade];
-			$('#app').append(cd(saved[id]));
-			avg += percent;
+			saved[id] = [percentr, lettergrader, percent, lettergrade];
+			$('#app').append(data(saved[id]));
+			avg += percentr;
 			$('#avgp').text(avg / id);
 			$('#avgl').text(lg(avg / id));
-			ch(questions);
+			chart(questions);
 		}
 	});
 	function lg(p) {
@@ -93,20 +91,23 @@ $(function() {
 			return "Error";
 		}
 	}
-	function cd(s) {
-		return "<tr><td>" + id + "</td><td>" + s[0] + "</td><td>" + s[1] + "</td></tr>";
+	function data(s) {
+		return "<tr><td>" + id + "</td><td title=\"" + s[2] + "\">" + s[0] + "</td><td title=\"" + s[3] + "\">" + s[1] + "</td></tr>";
 	}
-	function ch(q) {
+	function chart(q) {
 		$('#app2').html('');
 		var i = 0;
 		while(i<=q) {
-			$('#app2').append("<tr><td>" + i +  "</td><td>" + per(i, q, 0) + "</td><td>" + Math.round(per(i, q, 0)) + "</td><td>" + lg(per(i, q, 0)) + "</td><td>" + lg(Math.round(per(i, q, 0))) + "</td></tr>");
+			$('#app2').append("<tr><td>" + i +  "</td><td title=\"" + per(i, q, 0) + "\">" + Math.round(per(i, q, 0)) + "</td><td title=\"" + lg(per(i, q, 0)) + "\">" + lg(Math.round(per(i, q, 0))) + "</td></tr>");
 			i++;
 		}
 	}
 	function per(inc, ques, bon) {
 		var cor = ques - inc;
-		return cor / ques * 100 + + bon;
+		cor = cor / ques;
+		cor = cor * 100;
+		return cor + + bon;
+		
 	}
 	$('.print').click(function() {
 		window.print();

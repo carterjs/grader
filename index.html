@@ -45,17 +45,12 @@
 			<div id="tabs">
 				<ul class="nav nav-tabs">
 				  <li class="active"><a href="#result" data-toggle="tab">Result</a></li>
-				  <li><a href="#rounded-result" data-toggle="tab">Rounded result</a></li>
 				  <li><a href="#c-data" data-toggle="tab">Cumulative data</a></li>
 				  <li><a href="#chart" data-toggle="tab">Chart</a></li>
 				</ul>
-
 				<div class="tab-content">
 				  <div class="tab-pane active fade in" id="result">
 				  	This individual has achieved a(n) <strong><span id="percent"></span>%</strong> , which gives them a letter grade of <strong id="letter-grade"></strong>, by getting <strong><span class="correct"></span> out of <span class="questions"></span></strong> questions correct<span class="bonus"></span>.
-				  </div>
-				  <div class="tab-pane fade" id="rounded-result">
-				  	This individual has achieved around a(n) <strong><span id="percent-r"></span>%</strong> , which gives them a letter grade of <strong id="letter-grade-r"></strong>, by getting <strong><span class="correct"></span> out of <span class="questions"></span></strong> questions correct<span class="bonus"></span>.
 				  </div>
 				  <div class="tab-pane fade" id="c-data">
 					<a href="#" class="print">Print</a>
@@ -78,7 +73,7 @@
 				  	<table class="table table-striped printfocus">
 						<thead>
 							<tr>
-								<th>Incorrect</th><th>%</th><th>% rounded</th><th>Grade</th><th>Grade rounded</th>
+								<th>Number incorrect</th><th>%</th><th>Grade</th>
 							</tr>
 						</thead>
 						<tbody id="app2"></tbody>
