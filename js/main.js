@@ -49,22 +49,21 @@ $(function() {
 		questions = $('#questions').val();
 		var incorrect = $('#incorrect').val();
 		var bonus = $('#bonus').val();
-		incorrect -= bonus;
 		var correct = questions - incorrect;
-		var percent = per(incorrect, questions);
+		var percent = per(incorrect, questions, bonus);
 		var percentr = Math.round(percent);
 		var lettergrade = lg(percent);
 		var lettergrader = lg(percentr);
 		if(questions.length > 0) {
-			$('#tabs').animate({opacity: 1});
-			$('.correct').text(correct - bonus);
+			$('.tab-content').animate({opacity: 1});
+			$('.correct').text(correct);
 			$('.questions').text(questions);
 			$('#percent').text(percent);
 			$('#percent-r').text(percentr);
 			$('#letter-grade').text(lettergrade);
 			$('#letter-grade-r').text(lettergrader);
 			if(bonus > 0) {
-				$('.bonus').text(", and a bonus of " + bonus);
+				$('.bonus').html(", and a <strong>bonus of " + bonus + "</strong>");
 			}
 			if(id > 0) {
 				id++;
@@ -90,7 +89,7 @@ $(function() {
 		} else if(p < 60) {
 			return "F";
 		} else {
-			return "ERROR";
+			return "Error";
 		}
 	}
 	function cd(s) {
@@ -100,12 +99,12 @@ $(function() {
 		$('#app2').html('');
 		var i = 0;
 		while(i<=q) {
-			$('#app2').append("<tr><td>" + i +  "</td><td>" + per(i, q) + "</td><td>" + Math.round(per(i, q)) + "</td><td>" + lg(per(i, q)) + "</td><td>" + lg(Math.round(per(i, q))) + "</td></tr>");
+			$('#app2').append("<tr><td>" + i +  "</td><td>" + per(i, q, 0) + "</td><td>" + Math.round(per(i, q, 0)) + "</td><td>" + lg(per(i, q, 0)) + "</td><td>" + lg(Math.round(per(i, q, 0))) + "</td></tr>");
 			i++;
 		}
 	}
-	function per(inc, ques) {
+	function per(inc, ques, bon) {
 		var cor = ques - inc;
-		return cor / ques * 100;
+		return cor / ques * 100 + + bon;
 	}
 });

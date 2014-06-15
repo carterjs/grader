@@ -47,7 +47,7 @@ input::-webkit-inner-spin-button {
 	float: right;
 	outline: 0;
 }
-#tabs {
+.tab-content {
 	opacity: 0;
 }
 .tab-pane {
