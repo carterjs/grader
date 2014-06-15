@@ -1,6 +1,6 @@
 Grader
 ======
-The ultimate grading tool for teachers
+A sleek and simple grading tool for teachers.
 
 Installation
 ============
