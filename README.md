@@ -12,7 +12,7 @@ After you have dowloaded Grader:
 
 3.) Treat the page like a website and save it to favorites or set it as your homepage
 
-4.) Whenever you want to use it, either select it in favorites or click on either 'Grader' or 'Grader.html'
+4.) Whenever you want to use it, either select it in favorites or click on either 'index' or 'index.html'
 
 Tips
 ====
