@@ -19,11 +19,9 @@ Tips
 
 When using Grader, you can speed up grading even more by using these keyboard shortcuts:
 
-Shift key: Return to 'Number of questions' box
+Q key: Return to 'Number of questions' box
 
-Spacebar: Return to 'Number correct' box
-
-Enter: Submit current values
+I key: Return to 'Number incorrect' box
 
 =======================
 (c) 2014 Carter Schmalzle

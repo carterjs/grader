@@ -1,218 +1,77 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Grader</title>
-	<link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.0/themes/smoothness/jquery-ui.css" />
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-	<style>
-	* {
-	        font-family: verdana;
-	}
-	table * {
-	  outline: none;
-		font-size: 20px;
-	}
-	#num, #cor {
-		width: 50px;
-		height: 20px;
-		line-height: 20px;
-		font-size: 15px;
-	}
-	p#sub {
-		line-height: 15px;
-		font-size: 15px;
-	}
-	#res * {
-		outline: none;
-	}
-	#res {
-		border-top-left-radius: 0px;
-		border-top-right-radius: 0px;
-	}
-	#resbox {
-		display: none;
-	}
-	.tabs-spacer { 
-		float: left; 
-		height: 200px; 
-	}
-	.tabs-bottom .ui-tabs-nav { 
-		clear: left; 
-		padding: 0 .2em .2em .2em; 
-	}
-	.tabs-bottom .ui-tabs-nav li { 
-		top: auto; 
-		bottom: 0; 
-		margin: 0 .2em 1px 0; 
-		border-bottom: auto; 
-		border-top: 0; 
-	}
-	.tabs-bottom .ui-tabs-nav li.ui-tabs-active { 
-		margin-top: -1px; 
-		padding-top: 1px; 
-	}
-	#top {
-		border: 1px solid gray;
-		border-radius: 5px;
-	}
-	.tabs-bottom {
-		width: 98%;
-		margin: auto;
-		margin-top: -1px;
-		border: 1px solid gray;
-		border-bottom-left-radius: 5px;
-		border-bottom-right-radius: 5px;
-	}
-	.sig {
-		cursor: default;
-	}
-	.sig span{
-		color: #606060;
-	}
-	.sig span span{
-		color: #808080;
-	}
-	#err {
-		color: red;
-	}
-	
-	</style>
-	<script>
-	$(function() {
-	  	var ndone = true;
-			$('#sub').button();
-			 $('#num, #cor').spinner({min: 0});
-			 $(document).keydown(function(e) {
-				switch(e.which) {
-					case 13:
-						go();
-						break;
-					case 16:
-						$('#num').select();
-						break;
-					case 32:
-						$('#cor').select();
-						break;
-				}
-			 });
-			 $('#sub').click(function() {
-				go();
-			 });
-			 function go() {
-				 var num = $('#num').spinner("value");
-				 var cor = $('#cor').spinner("value");
-				 if(num && cor && num != NaN && cor != NaN) {
-				 var gr = cor / num * 100;
-				 var grr = Math.round(gr);
-				 var wro = num - cor;
-				 var lg;
-				if(gr >= 97 && grr <= 100) {
-					lg = 'A+';
-				} else if (gr >= 93 && gr <= 96.9) {
-					lg = 'A';
-				} else if (gr >= 90 && gr <= 92.9) {
-					lg = 'A-';
-				} else if (gr >= 87 && gr <= 89.9) {
-					lg = 'B+';
-				} else if (gr >= 83 && gr <= 86.9) {
-					lg = 'B';
-				} else if (gr >= 80 && gr <= 82.9) {
-					lg = 'B-';
-				} else if (gr >= 77 && gr <= 79.9) {
-					lg = 'C+';
-				} else if (gr >= 73 && gr <= 76.9) {
-					lg = 'C';
-				} else if (gr >= 70 && gr <= 72.9) {
-					lg = 'C-';
-				} else if (gr >= 67 && gr <= 69.9) {
-					lg = 'D+';
-				} else if (gr >= 63 && gr <= 66.9) {
-					lg = 'D';
-				} else if (gr >= 60 && gr <= 62.9) {
-					lg = 'D-';
-				} else if (gr < 60) {
-					lg = 'F';
-				} else if (grr > 100 && grr <= 115) {
-					lg = 'A+';
-				} else if (grr > 115) {
-					lg = 'A+, but getting a ' + grr + '% seems unrealistic.';
-				} else if (grr < 0) {
-					lg = 'F, but getting a ' + grr + '% seems unrealistic.';
-				} else {
-					lg = "<span id='err'>There seems to have been an error. Please click <a href='mailto:carterschmalzle@icloud.com?subject=Error in Grader(GitHub download v1)&body=Number of questions: " + num + "%0D%0ANumber correct: " + cor + "%0D%0AGrade: " + gr + "%%0D%0AGrade rounded: " + grr + "%0D%0A%0D%0AComments: %0D%0A%0D%0A '>here</a> to send an error report.</span>";
-				}
-				 $('#cor').select();
-				 if(ndone === true) {
-				$('.sig').hide('slide', {direction: 'left'}, 500).css("margin-right", "1%");
-				ndone = false;
-				 }
-				 $('#resbox').delay(600).show('slide', {direction: 'up'}, 500);
-				 $('.sig').delay(600).show('slide', {direction: 'left'}, 500);
-				 $('#top').animate({borderBottom: '0px solid white'}, 500);
-				 $('#gr').delay(100).html(gr + "%");
-				 $('#grr').html(grr + "%");
-				 $('#wro').html(wro);
-				 $('#lg').html(lg);
-			 	} else {
-					return false;
-			 	} 
-			 };
-			 $('#res').tabs();
-			 $('.tabs-bottom .ui-tabs-nav, .tabs-bottom .ui-tabs-nav > *').removeClass('ui-corner-all ui-corner-top').addClass('ui-corner-bottom');
-			 $('.tabs-bottom .ui-tabs-nav').appendTo('.tabs-bottom');
-		});
-	</script>
-</head>
-<body>
-	<div>
-		<fieldset id="top">
-			<legend>
-				<h2>Grader</h2>
-			</legend>
-			<form method="post">
-				<table align="center">
-					<tr>
-						<td align="right">Number of questions: </td>
-						<td align="right"><input id="num"></td>
-					</tr>
-					<tr>
-						<td>Number correct: </td>
-						<td><input id="cor"></td>
-					</tr>
-					<tr>
-						<td colspan="2" align="right"><p id="sub">Go</p></td>
-					</tr>
-				</table>
-			</form>
-		</fieldset>
-	</div>
-	<div id="resbox">
-		<fieldset id="res" class="tabs-bottom">
+	<head>
+		<meta name="description" content="A universal, easy-to-use grading tool for teachers, including many extra features and a design that works flawlessly on any platform. " />
+		<meta name="author" content="Carter Schmalzle" />
+		<meta charset="UTF-8" />
+		<title>Grader 2.0</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<header id="header">
+			<h2>Grader <small>v.2.0</small></h2>
+		</header>
+		<hr>
+		<main id="main">
+			<section id="form">
+				<!-- Total number of questions (#questions) -->
+				<div class="form-group">
+					<label for="questions">Number of questions</label>
+					<input type="number" class="form-control" id="questions" required="true" min="0">
+				</div>
+				<!-- Number of incorrect questions (#incorrect) -->
+				<div class="form-group">
+					<label for="incorrect">Number incorrect</label>
+					<input type="number" class="form-control" id="incorrect" required="true" min="0"></select>
+				</div>
+				<button class="btn btn-primary" id="submit" onClick="submit();">Submit</button>	
+				<!-- Toggle bonus (#toggle) -->
+				<div class="form-group" id="toggle-field">
+					<input type="checkbox" class="form-control" id="toggle">
+					<label for="toggle"></label>
+				</div>
+				<!-- Bonus (#bonus) -->
+				<div class="form-group" id="bonus-field">
+					<label for="bonus">Amount (subtracted from number incorrect)</label>
+					<input type="number" class="form-control" id="bonus">
+				</div>
+				<br>
+			</section>
+			<!-- Tab view -->
 			<div id="tabs">
-			  <ul>
-			    <li><a href="#tabs-1">Grade</a></li>
-			    <li><a href="#tabs-2">Grade Rounded</a></li>
-			    <li><a href="#tabs-3">Letter Grade</a></li>
-			    <li><a href="#tabs-4">Amount Incorrect</a></li>
-			  </ul>
-			  <div id="tabs-1">
-				  <p id="gr" align="center">Loading...</p>
-			  </div>
-			  <div id="tabs-2">
-				  <p id="grr" align="center">Loading...</p>
-			  </div>
-			  <div id="tabs-3">
-				  <p id="lg" align="center">Loading...</p>
-			  </div>
-			  <div id="tabs-4">
-				  <p id="wro" align="center">Loading...</p>
-			  </div>
+				<ul class="nav nav-tabs">
+				  <li class="active"><a href="#result" data-toggle="tab">Result</a></li>
+				  <li><a href="#rounded-result" data-toggle="tab">Rounded result</a></li>
+				  <li><a href="#c-data" data-toggle="tab">Cumulative data</a></li>
+				</ul>
+
+				<div class="tab-content">
+				  <div class="tab-pane active fade in" id="result">
+				  	This individual has achieved a(n) <strong><span id="percent"></span>%</strong> , which gives them a letter grade of <strong id="letter-grade"></strong>, by getting <strong><span class="correct"></span> out of <span class="questions"></span></strong> questions correct<span class="bonus"></span>.
+				  </div>
+				  <div class="tab-pane fade" id="rounded-result">
+				  	This individual has achieved around a(n) <strong><span id="percent-r"></span>%</strong> , which gives them a letter grade of <strong id="letter-grade-r"></strong>, by getting <strong><span class="correct"></span> out of <span class="questions"></span></strong> questions correct<span class="bonus"></span>.
+				  </div>
+				  <div class="tab-pane fade" id="c-data">
+				  	<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>#</th><th>Percent</th><th>Letter grade</th>
+							</tr>
+						</thead>
+						<tbody id="app"></tbody>
+				  	</table>
+					<center>Average: <strong id="avg"></strong></center>
+				  </div>
+				</div>
 			</div>
-		</fieldset>
-	</div>
-	<div class="sig" align="right">
-		<span id="sigtxt"> &copy 2014 <span>Carter Schmalzle</span> </span>
-	</div>
-</body>
+		</main>
+		<footer id="footer">
+			<small>&copy; 2014 Carter Schmalzle</small>
+		</footer>
+	</body>
 </html>
