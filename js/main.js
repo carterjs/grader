@@ -73,7 +73,8 @@ $(function() {
 			saved[id] = [percent, lettergrade];
 			$('#app').append(cd(saved[id]));
 			avg += percent;
-			$('#avg').text(avg / id + "% (" + lg(avg / id) + ")");
+			$('#avgp').text(avg / id);
+			$('#avgl').text(lg(avg / id));
 			ch(questions);
 		}
 	});
@@ -107,4 +108,7 @@ $(function() {
 		var cor = ques - inc;
 		return cor / ques * 100 + + bon;
 	}
+	$('.print').click(function() {
+		window.print();
+	});
 });

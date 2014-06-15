@@ -5,8 +5,8 @@
 		<meta name="author" content="Carter Schmalzle" />
 		<meta charset="UTF-8" />
 		<title>Grader</title>
-		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" media="screen" title="no title" charset="utf-8">
-		<link rel="stylesheet" href="css/main.css" type="text/css" media="screen" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" title="no title" charset="utf-8">
+		<link rel="stylesheet" href="css/main.css" type="text/css" title="no title" charset="utf-8">
 		<script src="js/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
 		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
@@ -58,18 +58,24 @@
 				  	This individual has achieved around a(n) <strong><span id="percent-r"></span>%</strong> , which gives them a letter grade of <strong id="letter-grade-r"></strong>, by getting <strong><span class="correct"></span> out of <span class="questions"></span></strong> questions correct<span class="bonus"></span>.
 				  </div>
 				  <div class="tab-pane fade" id="c-data">
-				  	<table class="table table-striped">
+					<a href="#" class="print">Print</a>
+				  	<table class="table table-striped printfocus">
 						<thead>
 							<tr>
-								<th>#</th><th>%</th><th>Grade</th>
+								<th> #</th><th> %</th><th> Grade</th>
 							</tr>
 						</thead>
 						<tbody id="app"></tbody>
+						<tfoot>
+							<tr>
+								<td><strong>Average</strong></td><td><strong id="avgp"></strong></td><td><strong id="avgl"></strong></td>
+							</tr>
+						</tfoot>
 				  	</table>
-					<center>Average: <strong id="avg"></strong></center>
 				  </div>
 				  <div class="tab-pane fade" id="chart">
-				  	<table class="table table-striped">
+					<a href="#" class="print">Print</a>
+				  	<table class="table table-striped printfocus">
 						<thead>
 							<tr>
 								<th>Incorrect</th><th>%</th><th>% rounded</th><th>Grade</th><th>Grade rounded</th>
