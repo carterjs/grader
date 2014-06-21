@@ -70,14 +70,9 @@ input::-webkit-inner-spin-button {
 }
 @media print {
 	.printfocus {
-		position: fixed;
-		top: 0;
-		left: 5px;
-		width: 100%;
-		background: #f0f0f0;
-		z-index: 2;
+		margin-left: 2px;
 	}
-	#header, #footer, #form, .nav-tabs, hr {
+	.print, #header, #footer, #form, .nav-tabs, hr {
 		display: none;
 	}
 }
