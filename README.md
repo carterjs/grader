@@ -23,7 +23,5 @@ Tips
 
 * When visible, the print button will print whatever is within the tab that you are currently viewing.
 
-Have suggestions? Email me <a href="mailto:carterschmalzle@icloud.com?subject=Grader suggestions">here</a>.
-
 =======================
 (c) 2014 Carter Schmalzle
