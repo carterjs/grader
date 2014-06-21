@@ -21,5 +21,7 @@ Tips
 
 * To see the un-rounded version of any grade, you can hover over it, but beware, binary doesn't always play well with decimals.
 
+* When visible, the print button will print whatever is within the tab that you are currently viewing.
+
 =======================
 (c) 2014 Carter Schmalzle
